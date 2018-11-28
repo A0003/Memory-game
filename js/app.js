@@ -29,16 +29,15 @@ for (var i = 0; i < shuffledDeck.length; i++) {
 
   domDeck.append(card);
 
-
-}
-
 // Card click event
 card.addEventListener('click', function() {
 
     card.classList.add("open", "show")
     openCard.push(this);
 
-  });
+    });
+
+  };
 
 // function checkForMatch() {
 //if (openCard.length >= 2) {
