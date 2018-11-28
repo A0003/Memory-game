@@ -29,22 +29,23 @@ for (var i = 0; i < shuffledDeck.length; i++) {
 
   domDeck.append(card);
 
+};
 
 // Card click event
-function checkForMatch(card) {
+function checkForMatch() {
 card.addEventListener('click', function() {
     if (openCard.length >= 2) {
-      //do thing when match
+      //do this
+
     } else {
       // do fail
-    }
 
     card.classList.add("open", "show")
     openCard.push(this);
 
-  });
+  };
 
-};
+});
 
  // console.log(card.querySelector('i').classList.value)
 
@@ -62,7 +63,29 @@ function shuffle(array) {
 
     return array;
 
-  };
+  }
+
+// Set timer
+
+let second = 0, minute = 0; hour = 0;
+let timer = document.querySelector(".timer");
+var interval;
+function startTimer(){
+  interval = setInterval(function(){
+      timer.innerHTML = minute+"mins "+second+"secs";
+      second++;
+      if(second == 60){
+          minute++;
+          second=0;
+      }
+      if(minute == 60){
+          hour++;
+          minute = 0;
+      }
+  },1000);
+}
+
+
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -74,4 +97,3 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-
