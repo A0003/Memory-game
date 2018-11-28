@@ -29,23 +29,23 @@ for (var i = 0; i < shuffledDeck.length; i++) {
 
   domDeck.append(card);
 
-};
+
+}
 
 // Card click event
-function checkForMatch() {
 card.addEventListener('click', function() {
-    if (openCard.length >= 2) {
-      //do this
-
-    } else {
-      // do fail
 
     card.classList.add("open", "show")
     openCard.push(this);
 
-  };
+  });
 
-});
+// function checkForMatch() {
+//if (openCard.length >= 2) {
+  //do this
+
+//} else {
+  // do fail
 
  // console.log(card.querySelector('i').classList.value)
 
