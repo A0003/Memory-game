@@ -14,6 +14,8 @@ let shuffledDeck = shuffle(deck);
 const domDeck = document.querySelector('.deck');
 domDeck.innerHTML = "";
 
+
+let openCard = [];
 // Create cards
 
 for (var i = 0; i < shuffledDeck.length; i++) {
@@ -29,11 +31,21 @@ for (var i = 0; i < shuffledDeck.length; i++) {
 
 
 // Card click event
+function checkForMatch(card) {
+card.addEventListener('click', function() {
+    if (openCard.length >= 2) {
+      //do thing when match
+    } else {
+      // do fail
+    }
 
-card.on('click', function() {
-    console.log(card.innerHTML);
+    card.classList.add("open", "show")
+    openCard.push(this);
 
-});
+  });
+
+};
+
  // console.log(card.querySelector('i').classList.value)
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -50,21 +62,7 @@ function shuffle(array) {
 
     return array;
 
-  }
-
-/*
-
-//
-let openCard = [];
-
-function checkForMatch(array) {
-  if (openCard[0] === openCard[1]) {
-    //do thing when match
-  } else {
-    // do fail
-  }
-
-};
+  };
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -76,3 +74,4 @@ function checkForMatch(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
