@@ -14,7 +14,6 @@ let shuffledDeck = shuffle(deck);
 const domDeck = document.querySelector('.deck');
 domDeck.innerHTML = "";
 
-
 let openCard = [];
 // Create cards
 
@@ -32,19 +31,31 @@ for (var i = 0; i < shuffledDeck.length; i++) {
 // Card click event
 card.addEventListener('click', function() {
 
-    card.classList.add("open", "show")
+    card.classList.add("open", "show");
     openCard.push(this);
 
     });
 
   };
 
-// function checkForMatch() {
-//if (openCard.length >= 2) {
-  //do this
+// Check for a match
 
-//} else {
-  // do fail
+function checkForMatch() {
+  if (openCard.length == 2) {
+  //do this
+    if (openCard[0].dataset.card == openCard[1].dataset.card) {
+      openCard[0].classList.add('match');
+      openCard[0].classList.add('open');
+      openCard[0].classList.add('show');
+
+    } else {
+      // do fail
+          card.classList.remove('open', 'show');
+
+        }
+      }
+    };
+
 
  // console.log(card.querySelector('i').classList.value)
 
@@ -82,6 +93,16 @@ function startTimer(){
           minute = 0;
       }
   },1000);
+}
+
+// Moves counter
+let num = 0;
+
+function increaseMoves() {
+    num++;
+
+      document.querySelector('.moves').innerHTML = num;
+
 }
 
 
