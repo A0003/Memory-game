@@ -15,11 +15,13 @@ const domDeck = document.querySelector('.deck');
 domDeck.innerHTML = "";
 
 let openCard = [];
+
 // Create cards
 
 for (var i = 0; i < shuffledDeck.length; i++) {
   let card = document.createElement("li");
   card.classList.add('card')
+  card.setAttribute("data-card", shuffledDeck[i]);
 
   let icon = document.createElement("i");
   icon.classList.add('fa');
@@ -34,6 +36,12 @@ card.addEventListener('click', function() {
     card.classList.add("open", "show");
     openCard.push(this);
 
+
+      startTimer();
+      checkForMatch();
+      increaseMoves();
+
+
     });
 
   };
@@ -42,19 +50,24 @@ card.addEventListener('click', function() {
 
 function checkForMatch() {
   if (openCard.length == 2) {
-  //do this
+    //do this
     if (openCard[0].dataset.card == openCard[1].dataset.card) {
-      openCard[0].classList.add('match');
-      openCard[0].classList.add('open');
-      openCard[0].classList.add('show');
+      for (var i=0; i<openCard.length; i++) {
+        openCard[i].classList.add('match', 'open', 'show');
+      }
 
     } else {
       // do fail
-          card.classList.remove('open', 'show');
+      for (var i=0; i<openCard.length; i++) {
+        openCard[i].classList.remove('open', 'show');
 
         }
+
       }
-    };
+      openCard = [];
+    }
+
+  };
 
 
  // console.log(card.querySelector('i').classList.value)
@@ -80,22 +93,40 @@ function shuffle(array) {
 let second = 0, minute = 0; hour = 0;
 let timer = document.querySelector(".timer");
 var interval;
-function startTimer(){
-  interval = setInterval(function(){
-      timer.innerHTML = minute+"mins "+second+"secs";
-      second++;
-      if(second == 60){
-          minute++;
-          second=0;
-      }
-      if(minute == 60){
-          hour++;
-          minute = 0;
-      }
-  },1000);
+
+function startTimer() {
+  interval = setInterval(function () {
+    timer.innerHTML = minute + "mins " + second + "secs";
+    second++;
+    if (second == 60) {
+      minute++;
+      second = 0;
+    }
+    if (minute == 60) {
+      hour++;
+      minute = 0;
+    }
+  }, 1000);
 }
 
+//Time out
+
+//let delay =
+
+setTimeout(function() {
+
+
+});
+
+/* setTimeout(function() {
+  restart();
+
+}, 2000);
+
+*/
+
 // Moves counter
+
 let num = 0;
 
 function increaseMoves() {
@@ -104,7 +135,6 @@ function increaseMoves() {
       document.querySelector('.moves').innerHTML = num;
 
 }
-
 
 
 /*
