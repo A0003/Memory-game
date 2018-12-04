@@ -42,6 +42,8 @@ card.addEventListener('click', function() {
       increaseMoves();
 
 
+
+
     });
 
   };
@@ -60,6 +62,8 @@ function checkForMatch() {
       // do fail
       for (var i=0; i<openCard.length; i++) {
         openCard[i].classList.remove('open', 'show');
+
+        setTimeout();
 
         }
 
@@ -111,18 +115,14 @@ function startTimer() {
 
 //Time out
 
-//let delay =
-
 setTimeout(function() {
+  window.alert(checkForMatch);
 
-
-});
+}, 500);
 
 /* setTimeout(function() {
   restart();
-
 }, 2000);
-
 */
 
 // Moves counter
