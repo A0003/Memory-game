@@ -40,8 +40,7 @@ card.addEventListener('click', function() {
       startTimer();
       checkForMatch();
       increaseMoves();
-
-
+      setTimeout();
 
 
     });
@@ -51,28 +50,38 @@ card.addEventListener('click', function() {
 // Check for a match
 
 function checkForMatch() {
-  if (openCard.length == 2) {
-    //do this
-    if (openCard[0].dataset.card == openCard[1].dataset.card) {
-      for (var i=0; i<openCard.length; i++) {
-        openCard[i].classList.add('match', 'open', 'show');
-      }
+ if (openCard.length == 2) {
+   //do this
+   if (openCard[0].dataset.card == openCard[1].dataset.card) {
+     for (var i = 0; i < openCard.length; i++) {
+       openCard[i].classList.add('match', 'open', 'show');
+     }
+     openCard = [];
+   } else {
+     // do fail
+     setTimeout(function () {
+       for (var i = 0; i < openCard.length; i++) {
+         openCard[i].classList.remove('open', 'show');
+       }
+       openCard = [];
+     }, 1000);
+   }
+ }
+};
 
-    } else {
-      // do fail
-      for (var i=0; i<openCard.length; i++) {
-        openCard[i].classList.remove('open', 'show');
 
-        setTimeout();
+// Winner
 
-        }
+var winningNumber = 0;
 
-      }
-      openCard = [];
-    }
-
-  };
-
+function gameWinner() {
+if (successfulMatch) {
+ winningNumber++;
+   if (winningNumber === 8) {
+     win();
+   }
+ }
+};
 
  // console.log(card.querySelector('i').classList.value)
 
@@ -113,16 +122,24 @@ function startTimer() {
   }, 1000);
 }
 
-//Time out
 
-setTimeout(function() {
-  window.alert(checkForMatch);
+/* Repeat click event
+restart.addEventListener('click', function() {
 
-}, 500);
+    restart.classList.remove("open", "show");
 
-/* setTimeout(function() {
-  restart();
-}, 2000);
+
+  });
+
+};
+
+//Restart game
+
+function reset() {
+  modal.classList.remove('show');
+  shuffle(array);
+
+};
 */
 
 // Moves counter
@@ -131,7 +148,6 @@ let num = 0;
 
 function increaseMoves() {
     num++;
-
       document.querySelector('.moves').innerHTML = num;
 
 }
