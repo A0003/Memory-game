@@ -10,18 +10,20 @@
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
-let shuffledDeck = shuffle(deck);
-const domDeck = document.querySelector('.deck');
-domDeck.innerHTML = "";
 
-let openCard = [];
+
+  let shuffledDeck = shuffle(deck);
+  const domDeck = document.querySelector('.deck');
+  domDeck.innerHTML = "";
+
+  let openCard = [];
 
 // Create cards
-
-for (var i = 0; i < shuffledDeck.length; i++) {
-  let card = document.createElement("li");
-  card.classList.add('card')
-  card.setAttribute("data-card", shuffledDeck[i]);
+function startGame () {
+  for (var i = 0; i < shuffledDeck.length; i++) {
+    let card = document.createElement("li");
+    card.classList.add('card')
+    card.setAttribute("data-card", shuffledDeck[i]);
 
   let icon = document.createElement("i");
   icon.classList.add('fa');
@@ -30,14 +32,13 @@ for (var i = 0; i < shuffledDeck.length; i++) {
 
   domDeck.append(card);
 
+
 // Card click event
-card.addEventListener('click', function() {
+  card.addEventListener('click', function() {
 
     card.classList.add("open", "show");
     openCard.push(this);
 
-
-      startTimer();
       checkForMatch();
       increaseMoves();
       setTimeout();
@@ -46,6 +47,10 @@ card.addEventListener('click', function() {
     });
 
   };
+
+};
+startGame();
+
 
 // Check for a match
 
@@ -64,24 +69,13 @@ function checkForMatch() {
          openCard[i].classList.remove('open', 'show');
        }
        openCard = [];
-     }, 1000);
-   }
- }
-};
+      }, 1000);
+    }
+  }
 
+ };
+startTimer();
 
-// Winner
-
-var winningNumber = 0;
-
-function gameWinner() {
-if (successfulMatch) {
- winningNumber++;
-   if (winningNumber === 8) {
-     win();
-   }
- }
-};
 
  // console.log(card.querySelector('i').classList.value)
 
@@ -123,27 +117,7 @@ function startTimer() {
 }
 
 
-/* Repeat click event
-restart.addEventListener('click', function() {
-
-    restart.classList.remove("open", "show");
-
-
-  });
-
-};
-
-//Restart game
-
-function reset() {
-  modal.classList.remove('show');
-  shuffle(array);
-
-};
-*/
-
 // Moves counter
-
 let num = 0;
 
 function increaseMoves() {
@@ -152,6 +126,26 @@ function increaseMoves() {
 
 }
 
+//Restart game
+let restart = document.querySelector('.fa fa-repeat');
+
+restart.addEventListener('click', function() {
+
+        startGame();
+});
+
+// Winner
+
+/*var winningNumber = 0;
+
+function gameWinner() {
+if (successfulMatch) {
+ winningNumber++;
+   if (winningNumber === 8) {
+     win();
+   }
+ }
+};
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -163,3 +157,4 @@ function increaseMoves() {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
