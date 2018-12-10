@@ -18,8 +18,8 @@
 
   let openCard = [];
 
-// Create cards
 function startGame () {
+// Create cards
   for (var i = 0; i < shuffledDeck.length; i++) {
     let card = document.createElement("li");
     card.classList.add('card')
@@ -51,9 +51,7 @@ function startGame () {
 };
 startGame();
 
-
 // Check for a match
-
 function checkForMatch() {
  if (openCard.length == 2) {
    //do this
@@ -73,9 +71,27 @@ function checkForMatch() {
     }
   }
 
+  /*// Winner
+  let winningNumber = 0;
+  let successfulMatch = document.querySelector("li");
+  successfulMatch.classList.add('match');
+
+  function gameWinner() {
+  if (successfulMatch) {
+   winningNumber++;
+     if (winningNumber === 8) {
+       win();
+     }
+   }
+  };
+*/
  };
 startTimer();
 
+//Win message
+function win() {
+
+}
 
  // console.log(card.querySelector('i').classList.value)
 
@@ -115,7 +131,7 @@ function startTimer() {
     }
   }, 1000);
 }
-
+restartGame();
 
 // Moves counter
 let num = 0;
@@ -127,6 +143,7 @@ function increaseMoves() {
 }
 
 //Restart game
+//Restart game
 let restart = document.querySelector('.fa fa-repeat');
 
 restart.addEventListener('click', function() {
@@ -134,18 +151,7 @@ restart.addEventListener('click', function() {
         startGame();
 });
 
-// Winner
 
-/*var winningNumber = 0;
-
-function gameWinner() {
-if (successfulMatch) {
- winningNumber++;
-   if (winningNumber === 8) {
-     win();
-   }
- }
-};
 
 /*
  * set up the event listener for a card. If a card is clicked:
