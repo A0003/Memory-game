@@ -24,7 +24,12 @@
   let timer = document.querySelector(".timer");
   var interval;
 
+  let winner = document.querySelector(".winner-content");
+
+
+
   let num = 0;
+
 
 function startGame () {
 // Create cards
@@ -41,6 +46,7 @@ function startGame () {
   domDeck.append(card);
 
 
+
 // Card click event
   card.addEventListener('click', function() {
 
@@ -49,7 +55,6 @@ function startGame () {
 
       checkForMatch();
       increaseMoves();
-      setTimeout();
 
 
     });
@@ -69,7 +74,6 @@ function checkForMatch() {
      }
      openCard = [];
      winningNumber++;
-      win();
       console.log(winningNumber);
    } else {
      // do fail
@@ -81,23 +85,20 @@ function checkForMatch() {
       }, 1000);
     }
   }
-
-// Winner
-function gameWinner() {
- if (winningNumber === 8) {
-
-     console.log("Win!");
-    }
-  };
- };
-gameWinner();
+};
 startTimer();
 
+// Winner
+function gameWinner(winningNumber) {
+ if (winningNumber === 8) {
+   winner.classList.add('show');
+    winner.style.visibility = 'visible';
 
-//Win message
-function win() {
-  //document.getElementByClassName("winner");
-};
+      console.log("Win!");
+    }
+  };
+gameWinner();
+
 
  // console.log(card.querySelector('i').classList.value)
 
@@ -132,19 +133,26 @@ function startTimer() {
     }
   }, 1000);
 }
-restartGame();
+
 
 // Moves counter
 function increaseMoves() {
     num++;
       document.querySelector('.moves').innerHTML = num;
 
-}
+};
 
 //Restart game
-let restart = document.querySelector('.fa fa-repeat');
 
-restart.addEventListener('click', function() {
 
-        startGame();
-});
+/*
+ * set up the event listener for a card. If a card is clicked:
+ *  - display the card's symbol (put this functionality in another function that you call from this one)
+ *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
+ *  - if the list already has another card, check to see if the two cards match
+ *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
+ *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
+ *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
+ *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
+ */
+
