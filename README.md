@@ -3,7 +3,9 @@ Memory Game
 Table of contents
 
 Game description
+
 Instructions
+
 Contributing
 
 The Memory Game is an interactive version of the classic memory games where a player attempts to find all matching cards in the deck. When all the cards are found, the game is won.
