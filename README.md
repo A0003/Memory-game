@@ -1,6 +1,7 @@
 Memory Game
 
 Table of contents
+
 Game description
 Instructions
 Contributing
