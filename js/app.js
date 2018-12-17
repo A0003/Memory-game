@@ -12,15 +12,16 @@
  */
 
 
-  let shuffledDeck = shuffle(deck);
+  let shuffledDeck;
   const domDeck = document.querySelector('.deck');
-  domDeck.innerHTML = "";
 
-  let openCard = [];
+  let openCard;
 
-  let winningNumber = 0;
+  let winningNumber;
 
-  let second = 0, minute = 0; hour = 0;
+  let second,
+      minute,
+      hour;
   let timer = document.querySelector(".timer");
   var interval;
 
@@ -28,10 +29,19 @@
 
 
 
-  let num = 0;
+  let num;
 
 
 function startGame () {
+  shuffledDeck = shuffle(deck);
+  domDeck.innerHTML = "";
+  openCard = [];
+  winningNumber = 0;
+  second = 0;
+  minute = 0;
+  hour = 0;
+  num = 0
+  resetMoves();
 // Create cards
   for (var i = 0; i < shuffledDeck.length; i++) {
     let card = document.createElement("li");
@@ -57,6 +67,7 @@ function startGame () {
       increaseMoves();
 
 
+
     });
 
   };
@@ -75,6 +86,7 @@ function checkForMatch() {
      openCard = [];
      winningNumber++;
       console.log(winningNumber);
+      gameWinner();
    } else {
      // do fail
      setTimeout(function () {
@@ -89,15 +101,13 @@ function checkForMatch() {
 startTimer();
 
 // Winner
-function gameWinner(winningNumber) {
+function gameWinner() {
+  console.log('gameWinner');
  if (winningNumber === 8) {
-   winner.classList.add('show');
-    winner.style.visibility = 'visible';
-
+   alert("Winner!");
       console.log("Win!");
     }
   };
-gameWinner();
 
 
  // console.log(card.querySelector('i').classList.value)
@@ -142,7 +152,16 @@ function increaseMoves() {
 
 };
 
+function resetMoves() {
+  num++;
+    document.querySelector('.moves').innerHTML = num;
+};
 //Restart game
+const restartButton = document.querySelector(".restart");
+
+restartButton.addEventListener('click', startGame)
+
+
 
 
 /*
@@ -155,4 +174,3 @@ function increaseMoves() {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-
