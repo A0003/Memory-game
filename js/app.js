@@ -25,11 +25,12 @@
   let timer = document.querySelector(".timer");
   var interval;
 
+  let stars = document.querySelectorAll('.fa-star');
+
   let winner = document.querySelector(".winner-content");
 
+  let moves;
 
-
-  let num;
 
 
 function startGame () {
@@ -40,7 +41,7 @@ function startGame () {
   second = 0;
   minute = 0;
   hour = 0;
-  num = 0
+  moves = 0;
   resetMoves();
 // Create cards
   for (var i = 0; i < shuffledDeck.length; i++) {
@@ -66,14 +67,13 @@ function startGame () {
       checkForMatch();
       increaseMoves();
 
-
-
     });
 
   };
 
 };
 startGame();
+
 
 // Check for a match
 function checkForMatch() {
@@ -108,7 +108,7 @@ function gameWinner() {
       console.log("Win!");
     }
   };
-
+increaseMoves();
 
  // console.log(card.querySelector('i').classList.value)
 
@@ -147,19 +147,40 @@ function startTimer() {
 
 // Moves counter
 function increaseMoves() {
-    num++;
-      document.querySelector('.moves').innerHTML = num;
+  moves++;
+    document.querySelector('.moves').innerHTML = moves;
 
-};
+  if (moves > 8 && moves < 12) {
+    for (i = 0; i < 3; i++) {
+      if (i > 1) {
+        stars[i].style.display = 'none';
+      }
+    }
+  }
+  else if (moves > 13) {
+    for (i = 0; i < 3; i++) {
+      if (i > 0) {
+        stars[i].style.display = 'none';
+        }
+      }
+    }
+  };
+
 
 function resetMoves() {
-  num++;
-    document.querySelector('.moves').innerHTML = num;
+  moves++;
+  document.querySelector('.moves').innerHTML = moves;
+
 };
+
+
 //Restart game
 const restartButton = document.querySelector(".restart");
 
 restartButton.addEventListener('click', startGame)
+
+
+
 
 
 
@@ -174,3 +195,4 @@ restartButton.addEventListener('click', startGame)
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
