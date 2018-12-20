@@ -60,13 +60,13 @@ function startGame () {
 
 // Card click event
   card.addEventListener('click', function() {
-
-    card.classList.add("open", "show");
-    openCard.push(this);
+    if (openCard[0] !== this) {
+      card.classList.add("open", "show");
+      openCard.push(this);
 
       checkForMatch();
       increaseMoves();
-
+      }
     });
 
   };
@@ -108,7 +108,7 @@ function gameWinner() {
       console.log("Win!");
     }
   };
-increaseMoves();
+//increaseMoves();
 
  // console.log(card.querySelector('i').classList.value)
 
@@ -147,7 +147,7 @@ function startTimer() {
 
 // Moves counter
 function increaseMoves() {
-  moves++;
+  //moves++;
     document.querySelector('.moves').innerHTML = moves;
 
   if (moves > 8 && moves < 12) {
@@ -178,9 +178,6 @@ function resetMoves() {
 const restartButton = document.querySelector(".restart");
 
 restartButton.addEventListener('click', startGame)
-
-
-
 
 
 
