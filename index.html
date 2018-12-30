@@ -7,8 +7,9 @@
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
     <link rel="stylesheet" href="css/app.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
-<body>
+<body onload="movesZero()">
 
     <div class="container">
         <header>
@@ -83,14 +84,23 @@
             </li>
         </ul>
 
-        <div class="winner-content">
-          <h2></h2>
-      </div>
+        <div id="alert" class="winner-content">
+          <h2> Yes! You won 👻 </h2>
+
+          </div>
+
+          <div class="addtl-content">
+            <p>You made <span id=finalMove> </span> moves </p>
+            <p>in <span id=totalTime> </span> </p>
+            <p>Rating: <span id=starRating></span></p>
+
+          </div>
 
     </div>
 
 
     <script src="js/app.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </body>
 </html>
