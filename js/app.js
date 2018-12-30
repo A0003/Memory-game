@@ -3,7 +3,6 @@
  */
  let deck = ['fa-bolt', 'fa-bolt', 'fa-diamond', 'fa-diamond', 'fa-paper-plane-o', 'fa-paper-plane-o', 'fa-anchor','fa-anchor', 'fa-cube','fa-cube', 'fa-leaf','fa-leaf', 'fa-bicycle', 'fa-bicycle', 'fa-bomb', 'fa-bomb'];
 
-
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -33,6 +32,7 @@
 
 
 
+
 function startGame () {
   shuffledDeck = shuffle(deck);
   domDeck.innerHTML = "";
@@ -43,6 +43,7 @@ function startGame () {
   hour = 0;
   moves = 0;
   resetMoves();
+  movesZero();
 // Create cards
   for (var i = 0; i < shuffledDeck.length; i++) {
     let card = document.createElement("li");
@@ -102,13 +103,20 @@ startTimer();
 
 // Winner
 function gameWinner() {
+  let starsList = document.querySelectorAll(".stars li");
+  let starRating = document.querySelector(".stars").innerHTML;
+
   console.log('gameWinner');
  if (winningNumber === 8) {
-   alert("Winner!");
+   swal("Yes! You won 👻");
+   //showing move, rating, time on modal
+   document.getElementById("finalMove").innerHTML = moves;
+   document.getElementById("starRating").innerHTML = starRating;
+   document.getElementById("totalTime").innerHTML = finalTime;
       console.log("Win!");
-    }
-  };
-//increaseMoves();
+  }
+};
+
 
  // console.log(card.querySelector('i').classList.value)
 
@@ -148,19 +156,19 @@ function startTimer() {
 // Moves counter
 function increaseMoves() {
   moves++;
-    document.querySelector('.moves').innerHTML = moves;
+    document.querySelector(".moves").innerHTML = moves;
 
   if (moves > 8 && moves < 12) {
     for (i = 0; i < 3; i++) {
       if (i > 1) {
-        stars[i].style.display = 'none';
+        stars[i].style.visibility = 'hidden';
       }
     }
   }
   else if (moves > 13) {
     for (i = 0; i < 3; i++) {
       if (i > 0) {
-        stars[i].style.display = 'none';
+        stars[i].style.visibility = 'hidden';
         }
       }
     }
@@ -179,6 +187,13 @@ const restartButton = document.querySelector(".restart");
 
 restartButton.addEventListener('click', startGame)
 
+//Set moves to zero
+function movesZero() {
+  if (openCard == 0) {
+    document.querySelector(".moves").innerHTML = 0;
+    moves = 0;
+  }
+};
 
 
 /*
@@ -191,5 +206,6 @@ restartButton.addEventListener('click', startGame)
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
 
 
